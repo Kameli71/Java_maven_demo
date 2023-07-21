@@ -9,23 +9,27 @@ pipeline {
         // }
         stage('Clone') {
             steps {
-                sh "rm -rf java/"
-                sh "git clone https://github.com/Kameli71/java"
+                sh "mvn clean"
+                sh "git clone https://github.com/Kameli71/Java_maven_demo.git"
                 echo "All files deleted from repertory"
                 echo "Clonage ok"
             }
         }
         stage('Build') {
             steps {
-                sh "cd /java"
-                sh "javac Javajenkins.java"
+                sh "cd /Java_maven_demo"
+                sh "mvn install package"
+                sh "mvn compile"
+                sh "javac main/java/com/example/App.java"
                 echo 'Moving to git rep'
-                echo 'Building ok'
+                echo 'Building and compilation ok'
             }
         }
         stage('Run') {
             steps {
-                sh "java Javajenkins.java"
+                sh "mvn test"
+                sh "mvn verify"
+                sh "java main/java/com/example/App.java"
                 echo 'launching project'
             }
         }
