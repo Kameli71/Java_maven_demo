@@ -4,7 +4,7 @@ pipeline{
         //stage pour gitclone le projet java
         stage('Git Clone'){
             steps{
-                git branch: 'master', url: 'https://github.com/Kameli71/Java_maven_demo.git'
+                git branch: 'main', url: 'https://github.com/Kameli71/Java_maven_demo.git'
             }
         }
         //stage pour compiler le projet java avec maven
