@@ -10,8 +10,7 @@ pipeline {
         stage('Clone') {
             steps {
                 sh "rm -rf Java_maven_demo/"
-                sh "mvn clean"
-                sh "git clone -b https://github.com/Kameli71/Java_maven_demo.git"
+                git branch: 'main', url:'https://github.com/Kameli71/Java_maven_demo.git'
                 echo "All files deleted from repertory"
                 echo "Clonage ok"
             }
@@ -20,7 +19,7 @@ pipeline {
             steps {
                 // sh "cd /Java_maven_demo"
                 sh "mvn install package"
-                sh "mvn compile"
+                sh "mvn clean compile"
                 sh "javac main/java/com/example/App.java"
                 echo 'Moving to git rep'
                 echo 'Building and compilation ok'
