@@ -28,7 +28,7 @@ pipeline{
         //stage pour lancer l'application java avec maven
         stage('Maven Run'){
             steps{
-                sh 'java -jar target/Java_maven_demo-1.0-SNAPSHOT.jar'
+                sh 'java -jar target/Java_maven_demo-0.1-SNAPSHOT.jar'
             }
         }
         //stage pour dire que le pipeline est fini
