@@ -9,16 +9,16 @@ pipeline {
         // }
         stage('Clone') {
             steps {
-                sh "sudo rm -rf Java_maven_demo/"
+                sh "rm -rf Java_maven_demo/"
                 sh "mvn clean"
-                sh "git clone https://github.com/Kameli71/Java_maven_demo.git"
+                sh "git clone -b https://github.com/Kameli71/Java_maven_demo.git"
                 echo "All files deleted from repertory"
                 echo "Clonage ok"
             }
         }
         stage('Build') {
             steps {
-                sh "sudo cd /Java_maven_demo"
+                sh "cd /Java_maven_demo"
                 sh "mvn install package"
                 sh "mvn compile"
                 sh "javac main/java/com/example/App.java"
