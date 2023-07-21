@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "cd /Java_maven_demo"
+                sh "cd /demo"
                 sh "mvn install package"
                 sh "mvn compile"
                 sh "javac main/java/com/example/App.java"
