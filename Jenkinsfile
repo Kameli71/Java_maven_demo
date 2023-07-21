@@ -1,36 +1,40 @@
-pipeline {
+pipeline{
     agent any
-
-    stages {
-        // stage('Exemple') {
-        //     steps {
-        //         echo "Runnng ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        //     }
-        // }
-        stage('Clone') {
-            steps {
-                sh "rm -rf Java_maven_demo/"
-                git branch: 'main', url:'https://github.com/Kameli71/Java_maven_demo.git'
-                echo "All files deleted from repertory"
-                echo "Clonage ok"
+    stages{
+        //stage pour gitclone le projet java
+        stage('Git Clone'){
+            steps{
+                git branch: 'master', url: 'https://github.com/Kameli71/Java_maven_demo.git'
             }
         }
-        stage('Build') {
-            steps {
-                // sh "cd /Java_maven_demo"
-                sh "mvn install package"
-                sh "mvn clean compile"
-                sh "javac main/java/com/example/App.java"
-                echo 'Moving to git rep'
-                echo 'Building and compilation ok'
+        //stage pour compiler le projet java avec maven
+        stage('Maven Compile'){
+            steps{
+                sh 'mvn clean compile'
             }
         }
-        stage('Run') {
-            steps {
-                sh "mvn test"
-                sh "mvn verify"
-                sh "java main/java/com/example/App.java"
-                echo 'launching project'
+        //stage pour tester le projet java avec maven
+        stage('Maven Test'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+        //stage pour package le projet java avec maven
+        stage('Maven Package'){
+            steps{
+                sh 'mvn package'
+            }
+        }
+        //stage pour lancer l'application java avec maven
+        stage('Maven Run'){
+            steps{
+                sh 'java -jar target/Java_maven_demo-1.0-SNAPSHOT.jar'
+            }
+        }
+        //stage pour dire que le pipeline est fini
+        stage('Finish'){
+            steps{
+                echo 'Pipeline terminé'
             }
         }
     }
