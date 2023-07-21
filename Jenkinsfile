@@ -4,7 +4,7 @@ pipeline{
         //stage pour gitclone le projet java
         stage('Git Clone'){
             steps{
-                git branch: 'main', url: 'https://github.com/Kameli71/Java_maven_demo.git'
+                git branch: 'master', url: 'https://github.com/JuMANocta/2022_ITS_javaPersonne.git'
             }
         }
         //stage pour compiler le projet java avec maven
@@ -28,7 +28,7 @@ pipeline{
         //stage pour lancer l'application java avec maven
         stage('Maven Run'){
             steps{
-                sh 'java -jar target/Java_maven_demo-0.1-SNAPSHOT.jar'
+                sh 'java -jar target/itsjavapersonne-0.2.jar'
             }
         }
         //stage pour dire que le pipeline est fini
